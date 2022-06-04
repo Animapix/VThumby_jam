@@ -1,48 +1,42 @@
-local scene = {}
+local scene = newScene()
+
+require("Game/Brick")
+local spaceShip = require("Game/SpaceShip")
 
 scene.Load = function()
-
+    scene.AddSprite(newBrick(10,20))
+    scene.AddSprite(newBrick(30,10))
+    scene.AddSprite(newBrick(10,30))
+    scene.AddSprite(spaceShip)
 end
-local dy = 1
-local y = 0
-local dx = 1
-local x = 0
 
 scene.Update = function()
-    y = y + dy
-    if y >= 40 then dy = -1 end
-    if y <= 1 then dy = 1 end
-    x = x + dx
-    if x >= 72 then dx = -1 end
-    if x <= 1 then dx = 1 end
+    scene.UpdateSprites()
 end
+local d1 = 1
+
 
 scene.Draw = function()
-    --[[DrawSprite(10,10,spriteSheet["brick"])
-    DrawSprite(10 + 4,10 + 3,spriteSheet["numbers"][6])
-    
-    DrawLine(0,y * -1 + 40,72,y)
-    DrawLine(x * -1 + 72,0,x,40)
+    scene.DrawSprites()
 
-    DrawLine(10,20,62,20)
-    DrawLine(36,5,36,35)
-    DrawLine(26,10,46,30)
-    DrawLine(46,10,26,30)
+    local x  = spaceShip.position.x + 8
+    local y = spaceShip.position.y + 5
 
-    DrawLines(0,y * -1 + 40,72,y,x,40,x * -1 + 72,0)
-
-    DrawRect("fill",30,30,10,10)
-
-    DrawCircle("line",36,20,20)]]
-
-    DrawText("animapix",16,10)
-    DrawText("et",32,16)
-    DrawText("Raphytator",10,22)
+    DrawLine(x,y-1,vthumb.display.width,y-1)
+    DrawLine(x,y,vthumb.display.width,y)
+    DrawLine(x,y+1,vthumb.display.width,y+1)
+    for x = x, vthumb.display.width do 
+        local sinY = math.sin(x / 8 + d1) * math.cos( x / 10 + d1/ 4 ) * 5 + y
+        local l = 1
+        if sinY > y - 1  and sinY < y + 2 then l = 0 end 
+        SetPixel(x,sinY,l,1)
+    end
+    d1 = d1 - 1
 
 end
 
 scene.Unload = function()
-
+    scene.DrawSprites()
 end
 
 return scene

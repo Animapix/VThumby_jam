@@ -30,7 +30,7 @@ end
 
 DrawRect = function(mode,x,y,width,height)
     local left,top = x,y
-    local right,down = x+width,y+height
+    local right,down = x+width-1,y+height-1
     if mode == "fill" then
         while x <= right do
             DrawLine(x,top,x,down)

@@ -12,7 +12,11 @@ ChangeCurrentScene = function(pSceneLabel)
 end
 
 UpdateCurrentScene = function()
-    if currentScene ~= nil then currentScene.Update() end
+    if currentScene ~= nil then 
+        currentScene.Update()
+        currentScene.UpdatePhysic() 
+        currentScene.CleanSprites()
+    end
 end
 
 DrawCurrentScene = function()
