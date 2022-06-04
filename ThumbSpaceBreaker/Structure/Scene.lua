@@ -6,13 +6,12 @@ function newScene()
     end
 
     scene.Update = function()
+        scene.UpdateSprites()
     end
-
-
-
+    
     scene.UpdateSprites = function()
         for _,sprite in ipairs(scene.sprites) do
-            sprite.Update()
+            if sprite.enable then sprite.Update() end
         end
     end
 
@@ -24,7 +23,7 @@ function newScene()
         for _,spriteA in ipairs(scene.sprites) do
             for _,spriteB in ipairs(scene.sprites) do
                 if spriteA ~= spriteB then
-                    if spriteA.OnCollide ~= nil or spriteB.OnCollide ~= nil then
+                    if spriteA.OnCollide ~= nil or spriteB.OnCollide ~= nil  then
                         if spriteA.boundingBox.CheckCollision(spriteB.boundingBox) then
                             if spriteA.OnCollide ~= nil then spriteA.OnCollide(spriteB) end
                         end
@@ -35,12 +34,12 @@ function newScene()
     end
 
     scene.Draw = function()
-        
+        scene.DrawSprites()
     end
 
     scene.DrawSprites = function()
         for _,sprite in ipairs(scene.sprites) do
-            sprite.Draw()
+            if sprite.enable then sprite.Draw() end
         end
     end
 
@@ -59,6 +58,13 @@ function newScene()
         table.insert( scene.sprites, sprite)
     end
 
+    scene.GetSprites = function(type)
+        local result = {}
+        for _,sprite in ipairs(scene.sprites) do
+            if sprite.type == type then table.insert(result,sprite) end
+        end
+        return result
+    end
+
     return scene
 end
-

@@ -1,8 +1,14 @@
-local spaceShip = newSprite(1,1,"ship")
+require("Game/Bullet")
+
+local spaceShip = newSprite(5,15,"ship")
 
 spaceShip.speed = 1.5
 spaceShip.lifes = 3
+spaceShip.laser = require("Game/laser")
 spaceShip.boundingBox = newBoundingBox(3,3,5,7,spaceShip.position)
+
+AddSpriteToCurrentScene(spaceShip.laser)
+AddSpriteToCurrentScene(spaceShip)
 
 spaceShip.Update = function()
     -- Move ship
@@ -32,6 +38,14 @@ spaceShip.Update = function()
         spaceShip.position.y = vthumb.display.height - spaceShip.boundingBox.y - spaceShip.boundingBox.height + 2
     end
 
+    spaceShip.laser.enable = vthumb.buttonB.pressed
+    spaceShip.laser.position = spaceShip.position + newVector(5,5)
+
+
+    if vthumb.buttonA.justPressed then
+        local bullet = newBullet(spaceShip.position.x ,spaceShip.position.y + 4)
+        AddSpriteToCurrentScene(bullet)
+    end
 end
 
 spaceShip.Move = function(direction)

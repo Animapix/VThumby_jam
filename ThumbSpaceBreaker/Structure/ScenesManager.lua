@@ -19,6 +19,10 @@ UpdateCurrentScene = function()
     end
 end
 
+AddSpriteToCurrentScene = function(sprite)
+    currentScene.AddSprite(sprite)
+end
+
 DrawCurrentScene = function()
     if currentScene ~= nil then currentScene.Draw() end
 end

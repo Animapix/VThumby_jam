@@ -3,6 +3,10 @@ function newBrick(pX,pY,pValue)
     brick.value = pValue or 1
     brick.boundingBox = newBoundingBox(2,2,9,9,brick.position)
 
+    brick.Update = function()
+        if brick.position.x < 0 then brick.isRemovable = true end
+    end
+
     brick.Draw =  function()
         DrawSprite(brick.position.x,brick.position.y,spriteSheet["brick"])
         if brick.value > 0 and brick.value < 10 then

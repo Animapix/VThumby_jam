@@ -5,7 +5,7 @@ function newSprite(pX,pY, pType)
     sprite.position = newVector(pX or 1,pY or 1)
     sprite.boundingBox = newBoundingBox(0,0,8,8,sprite.position)
     sprite.isRemovable = false
-
+    sprite.enable = true
     sprite.Update = function()
         
     end

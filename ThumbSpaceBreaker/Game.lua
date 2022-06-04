@@ -9,8 +9,8 @@ require("Structure/ScenesManager")
 
 LoadSpriteSheet("Datas/spriteSheet.json")
 
-RegisterScene("scene1", require("Scenes/Scene1"))
-ChangeCurrentScene("scene1")
+RegisterScene("game", require("Scenes/SceneGame"))
+ChangeCurrentScene("game")
 
 function v()
     ClearDisplay()
