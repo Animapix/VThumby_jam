@@ -7,12 +7,22 @@ file:close()
 local chunks = json.decode(content)
 
 local distance = math.random(5,20)
+local lastBrick = nil
 
 spawn.Update = function(speed)
-    distance = distance - speed
-    if math.floor(distance) <= 0 then
+    local shoot = false
+    if lastBrick ~= nil then
+        if lastBrick.position.x <= vthumb.display.width - 10 then
+            print(lastBrick.position.x)
+            shoot = true
+        end
+    else 
+        shoot = distance <= 0
+        distance = distance - speed
+    end
 
-
+    
+    if shoot then
         -- Selection chunk
         local ran = math.random(1,1000) / 1000
         local idx = {}
@@ -27,17 +37,22 @@ spawn.Update = function(speed)
         local randId =  idx[math.random(#idx)] 
         local chunk = chunks[randId]["bricks"]
         local cellSize = 10
+        local correction = 0
+        if lastBrick ~= nil then
+            correction = lastBrick.position.x - math.floor( lastBrick.position.x )
+        end
         for r = 1, 4 do
             for c = 1, #chunk[r] do
                 local v = chunk[r][c]
                 if v > 0 and v <= cellSize then
-                    local x = vthumb.display.width + (c-1) * cellSize
+                    local x = vthumb.display.width + (c-1) * cellSize - correction
                     local y = (r-1) * cellSize
-                    AddSpriteToCurrentScene(newBrick(x,y,v))
+                    lastBrick = newBrick(x,y,v),LAYER.bricks
+                    AddSpriteToCurrentScene(lastBrick,LAYER.bricks)
                 end
             end
         end
-        distance = (#chunk[1])  * cellSize + cellSize
+        distance = (#chunk[1])  * cellSize
     end
     
 end

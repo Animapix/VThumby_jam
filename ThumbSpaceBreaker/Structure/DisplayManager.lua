@@ -13,8 +13,26 @@ local GetSpriteDataSize = function(bin)
     return columns, rows
 end
 
-DrawText = function(text,x,y)
+DrawText = function(text,x,y, pJustif)
     text = string.upper(text)
+    local width = 0
+
+    for i= 1, #text do
+        local char = string.sub( text, i,i )
+        if font[char] ~= nil then
+            local columns, rows = GetSpriteDataSize(font[char])
+            width = width + columns + 1
+        else
+            if char == " " then width = width + 5 end
+        end
+    end
+    
+    if pJustif == "centered" then
+        x = x - width / 2 + 1
+    elseif pJustif == "right" then
+        x = x - width + 2
+    end
+
     for i= 1, #text do
         local char = string.sub( text, i,i )
         if font[char] ~= nil then
@@ -146,12 +164,31 @@ ClearDisplay = function()
         end
     end
 end
+local freezed = false
 
 DrawDisplay = function()
     for x = 1, vthumb.display.width do
         for y = 1, vthumb.display.height do
-            if pixels[x][y] == 1 then vthumb.setPixel(x,y) end
+            if freezed then
+                if tmpBuffer[x][y] == 1 then vthumb.setPixel(x,y) end
+            else
+                if pixels[x][y] == 1 then vthumb.setPixel(x,y) end
+            end
+            
         end
     end
+end
+
+GetFrame = function()
+    local tmpBuffer = {}
+    for x = 1, vthumb.display.width do
+        tmpBuffer[x] = {}
+        for y = 1, vthumb.display.height do
+            tmpBuffer[x][y] = pixels[x][y]
+        end
+    end
+end
+
+Freeze = function()
 end
 

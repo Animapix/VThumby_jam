@@ -1,3 +1,5 @@
+local hitSound = love.audio.newSource("Sounds/hitHurt.wav", "static")
+
 function newBullet(pX,pY)
     local bullet = newSprite(pX,pY,"bullet")
 
@@ -17,6 +19,9 @@ function newBullet(pX,pY)
         if other.type == "brick" then
             other.hit()
             bullet.isRemovable = true
+            
+            hitSound:stop()
+            hitSound:play()
         end
     end
 

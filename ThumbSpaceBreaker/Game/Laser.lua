@@ -14,6 +14,7 @@ laser.Draw =  function()
     DrawLine(x,y-1,vthumb.display.width,y-1)
     DrawLine(x,y,vthumb.display.width,y)
     DrawLine(x,y+1,vthumb.display.width,y+1)
+
     for x = x, vthumb.display.width do 
         local sinY = math.sin(x / 8 + laser.d1) * math.cos( x / 10 + laser.d1/ 4 ) * 5 + y
         local l = 1

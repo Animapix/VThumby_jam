@@ -19,8 +19,8 @@ UpdateCurrentScene = function()
     end
 end
 
-AddSpriteToCurrentScene = function(sprite)
-    currentScene.AddSprite(sprite)
+AddSpriteToCurrentScene = function(sprite,layer)
+    currentScene.AddSprite(sprite,layer)
 end
 
 DrawCurrentScene = function()
