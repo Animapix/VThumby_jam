@@ -1,16 +1,26 @@
-local scene = newScene()
+local scene = {}
 
+--[[______________________________________________  LOAD  ______________________________________________ ]]
+scene.Load = function()
+
+end
+
+--[[______________________________________________ UPDATE ______________________________________________ ]]
 scene.Update = function()
     if vthumb.buttonA.justPressed then
-        ChangeCurrentScene("menu")
+        scenesController.LoadScene("menu")
     end
 end
 
+--[[______________________________________________  DRAW  ______________________________________________ ]]
 scene.Draw = function()
-    DrawText("Game Over", 36,5,"centered")
-    DrawText("SCORE", 36,15,"centered")
-    DrawText(gameManager.score, 36,30,"centered")
-    scene.DrawSprites()
+    display.DrawText("Game Over",36,5,fontsManager.GetFont("4BitsFont"), "centered")
+    display.DrawText("SCORE",36,15,fontsManager.GetFont("4BitsFont"), "centered")
+    display.DrawText(gameController.score,36,30,fontsManager.GetFont("numbersFont"), "centered")
+end
+
+--[[______________________________________________ UNLOAD ______________________________________________ ]]
+scene.Unload = function()
 end
 
 return scene

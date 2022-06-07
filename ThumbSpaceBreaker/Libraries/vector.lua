@@ -1,4 +1,4 @@
-function newVector(pX, pY)
+NewVector = function(pX, pY)
     local vector = {}
 
     vector.x = pX or 0
@@ -7,26 +7,26 @@ function newVector(pX, pY)
     local vectorMetaTable = {}
 
     function vectorMetaTable.__add(v1,v2)
-        local result = newVector(0,0)
+        local result = NewVector(0,0)
         result.x = v1.x + v2.x
         result.y = v1.y + v2.y
         return result
     end
 
     function vectorMetaTable.__sub(v1,v2)
-        local result = newVector(0,0)
+        local result = NewVector(0,0)
         result.x = v1.x - v2.x
         result.y = v1.y - v2.y
         return result
     end
 
     function vectorMetaTable.__unm(v)
-        local result = newVector(-v.x,-v.y)
+        local result = NewVector(-v.x,-v.y)
         return result
     end
 
     function vectorMetaTable.__mul(k,v)
-        local result = newVector(0,0)
+        local result = NewVector(0,0)
         if type(k)=="number" then
             result.x = k*v.x
             result.y = k*v.y
@@ -38,7 +38,7 @@ function newVector(pX, pY)
     end
 
     function vectorMetaTable.__div(k,v)
-        local result = newVector(0,0)
+        local result = NewVector(0,0)
         if type(k)=="number" then
             result.x = k/v.x
             result.y = k/v.y

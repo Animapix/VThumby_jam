@@ -1,0 +1,26 @@
+[
+    {
+        "name": "startSound",
+        "fileName": "demarrageThumby.wav",
+        "mode": "static",
+        "volume": 0.1
+    },
+    {
+        "name": "music",
+        "fileName": "game1.mp3",
+        "mode": "stream",
+        "volume": 0.03
+    },
+    {
+        "name": "hit",
+        "fileName": "hitHurt.wav",
+        "mode": "static",
+        "volume": 0.3
+    },
+    {
+        "name": "shoot",
+        "fileName": "laserShoot.wav",
+        "mode": "static",
+        "volume": 0.3
+    }
+]

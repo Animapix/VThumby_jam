@@ -8,9 +8,10 @@
   ╚═══╝     ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═════╝ 
                                          
   Version : 220525-1
-  (C) Gamecodeur Mai 2022 - By David Mekersa
-
+  (C) Gamecodeur Mai 2022 - By David Mekersa\
+  
 ]]
+
 vthumb = {}
 vthumb.display = {
     width = 72,
@@ -32,16 +33,19 @@ OR, XOR, AND = 1, 3, 4
 require("game")
 
 function bitand(a, b)
+
     local result = 0
     local bitval = 1
+    
     while a > 0 and b > 0 do
         if a % 2 == 1 and b % 2 == 1 then -- test the rightmost bits
             result = result + bitval -- set the current bit
         end
         bitval = bitval * 2 -- shift left
         a = math.floor(a / 2) -- shift right
-        b = math.floor(b / 2)
+        b = math.floor(b / 2) 
     end
+
     return result
 end
 

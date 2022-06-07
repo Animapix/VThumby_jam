@@ -1,16 +1,28 @@
-local scene = newScene()
+local scene = {}
 
+--[[______________________________________________  LOAD  ______________________________________________ ]]
+scene.Load = function()
+
+end
+
+--[[______________________________________________ UPDATE ______________________________________________ ]]
 scene.Update = function()
     if vthumb.buttonA.justPressed then
-        ChangeCurrentScene("game")
+        scenesController.LoadScene("game")
     end
 end
 
+--[[______________________________________________  DRAW  ______________________________________________ ]]
 scene.Draw = function()
-    DrawText("Thumb", 36,3,"centered")
-    DrawText("space breaker", 36,13,"centered")
-    DrawText("Push A", 36,28,"centered")
-    DrawText("to start", 36,35,"centered")
+    display.DrawText("Thumb space",36,5,fontsManager.GetFont("4BitsFont"), "centered")
+    display.DrawText("breaker",36,15,fontsManager.GetFont("4BitsFont"), "centered")
+
+    display.DrawText("A to start",36,30,fontsManager.GetFont("4BitsFont"), "centered")
+
+end
+
+--[[______________________________________________ UNLOAD ______________________________________________ ]]
+scene.Unload = function()
 end
 
 return scene

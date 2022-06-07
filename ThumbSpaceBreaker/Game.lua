@@ -1,33 +1,30 @@
-require("Structure/Vector")
-require("Structure/BoundingBox")
-require("Structure/Sprite")
-require("Structure/Scene")
+require("libraries/vector")
+require("libraries/timers")
 
-require("Structure/SpriteSheetLoader")
-require("Structure/DisplayManager")
-require("Structure/ScenesManager")
-require("Structure/GameManager")
+require("engine/spritesManager")
+require("engine/soundsManager")
+require("engine/fontsManager")
 
-LoadSpriteSheet("Datas/spriteSheet.json")
+spritesManager.LoadSprites("assets/sprites.json")
+fontsManager.LoadFonts("assets/fonts.json")
+soundsManager.LoadSounds("assets/sounds.json")
 
-RegisterScene("game", require("Scenes/SceneGame"))
-RegisterScene("gameover", require("Scenes/SceneGameover"))
-RegisterScene("menu", require("Scenes/SceneMenu"))
-ChangeCurrentScene("menu")
+require("engine/displayController")
+require("engine/scenesController")
+require("gameObjects/gameController")
 
-local startSound = love.audio.newSource("Sounds/demarrageThumby.wav","static")
-startSound:setVolume(0.1)
-startSound:play()
+display.Init(vthumb.display.width, vthumb.display.height)
+scenesController.RegisterScene("game", require("scenes/sceneGame"))
+scenesController.RegisterScene("menu", require("scenes/sceneMenu"))
+scenesController.RegisterScene("gameOver", require("scenes/sceneGameOver"))
+scenesController.LoadScene("menu")
+
+soundsManager.Play("startSound")
 
 function v()
-    ClearDisplay()
-    UpdateCurrentScene()
-    DrawCurrentScene()
-    DrawDisplay()
-
-
-    if vthumb.buttonB.justPressed then
-        print("Freeze")
-        Freeze()
-    end
+    UpdateTimers()
+    display.Clear()
+    scenesController.Update()
+    scenesController.Draw()
+    display.Draw()
 end
