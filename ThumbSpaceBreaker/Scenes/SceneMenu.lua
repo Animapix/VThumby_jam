@@ -3,7 +3,7 @@ local scene = {}
 --[[______________________________________________  LOAD  ______________________________________________ ]]
 scene.Load = function()
     soundsManager.Stop("gameoverMusic")
-    NewTimer(10, false, function()  soundsManager.Play("menu",true) end) 
+    NewTimer(20, false, function()  soundsManager.Play("menu",true) end)
 end
 
 --[[______________________________________________ UPDATE ______________________________________________ ]]
@@ -18,9 +18,7 @@ end
 scene.Draw = function()
     display.DrawText("Thumb space",36,5,fontsManager.GetFont("4BitsFont"), "centered")
     display.DrawText("breaker",36,15,fontsManager.GetFont("4BitsFont"), "centered")
-
     display.DrawText("A to start",36,30,fontsManager.GetFont("4BitsFont"), "centered")
-
 end
 
 --[[______________________________________________ UNLOAD ______________________________________________ ]]
