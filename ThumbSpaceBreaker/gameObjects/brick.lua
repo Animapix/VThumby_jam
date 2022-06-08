@@ -5,6 +5,9 @@ function NewBrick(x,y,value,offset,bonus)
     brick.value = value or 1
     brick.currentValue = brick.value
     brick.bonus = bonus or false
+    brick.invincible = false
+    brick.invincibleDuration = 3
+
 
     brick.Draw =  function()
         local sprite = spritesManager.GetSprite("brick")
@@ -24,6 +27,10 @@ function NewBrick(x,y,value,offset,bonus)
     end
 
     brick.hit = function(bricks,bonus,scroller)
+        if brick.invincible then return end
+        brick.invincible = true
+        NewTimer( brick.invincibleDuration, false, function() brick.invincible = false end)
+        
         soundsManager.Play("hit")
         brick.currentValue = brick.currentValue - 1
         if brick.currentValue <= 0 then 

@@ -12,13 +12,13 @@ local bricks = {}
 local bonusList = {}
 
 scene.Load = function()
+    gameController.Init()
     spaceShip.Init(10,20)
     scroller.Init()
     bullets = {}
     bricks = {}
     bonusList = {}
     soundsManager.Play("music",true)
-
 end
 
 --[[______________________________________________ UPDATE ______________________________________________ ]]
@@ -84,8 +84,7 @@ scene.Update = function()
         end
         if not spaceShip.free then
             if spaceShip.laserEnabled and CheckCollision(spaceShip.GetLaserBoundingBox(),brick.GetBoundingBox()) then
-                brick.Scoring()
-                brick.free = true
+                brick.hit(bricks,bonusList,scroller)
             end
 
             if CheckCollision(spaceShip.GetBoundingBox(),brick.GetBoundingBox()) then
