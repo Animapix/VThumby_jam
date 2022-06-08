@@ -2,13 +2,14 @@ local scene = {}
 
 --[[______________________________________________  LOAD  ______________________________________________ ]]
 scene.Load = function()
-
+    NewTimer(10, false, function()  soundsManager.Play("menu",true) end) 
 end
 
 --[[______________________________________________ UPDATE ______________________________________________ ]]
 scene.Update = function()
     if vthumb.buttonA.justPressed then
         scenesController.LoadScene("game")
+        soundsManager.Stop("menu")
     end
 end
 

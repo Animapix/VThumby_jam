@@ -49,11 +49,9 @@ end
 spaceShip.Laser = function()
     if not spaceShip.laserEnabled and spaceShip.lasers > 0 then
         spaceShip.laserEnabled = true
-        print("start laser")
         NewTimer( spaceShip.laserTime, false, function() 
             spaceShip.laserEnabled = false 
             spaceShip.lasers = spaceShip.lasers - 1
-            print("stop laser")
         end)
     end
 end
@@ -99,7 +97,7 @@ spaceShip.hit = function()
         soundsManager.Play("gameover")
         NewTimer( 60, false, function(t) 
             scenesController.LoadScene("gameOver")
-            soundsManager.stop("music")
+            soundsManager.Stop("music")
         end)
     else
         soundsManager.Play("hurt")

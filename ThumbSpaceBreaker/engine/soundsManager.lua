@@ -23,7 +23,7 @@ soundsManager.Play = function(soundName,looping)
     sounds[soundName]:play()
 end
 
-soundsManager.stop = function(soundName)
+soundsManager.Stop = function(soundName)
     sounds[soundName]:stop()
 end
 
