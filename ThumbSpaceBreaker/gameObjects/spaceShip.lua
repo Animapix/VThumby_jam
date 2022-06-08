@@ -16,7 +16,7 @@ spaceShip.Init = function(x,y)
     spaceShip.blinkTimer = spaceShip.invincibleTime
     spaceShip.free = false
 
-    spaceShip.laserTime = 100
+    spaceShip.laserTime = 60
     spaceShip.laserEnabled = false
     spaceShip.laserOffset = 0
     spaceShip.lasers = 3
@@ -96,10 +96,12 @@ spaceShip.hit = function()
     if spaceShip.lifes <= 0 then 
         spaceShip.invincible = true
         spaceShip.free = true
+        soundsManager.Stop("music")
         soundsManager.Play("gameover")
-        NewTimer( 60, false, function(t) 
+        NewTimer(45, false, function()  soundsManager.Play("gameoverMusic", true) end) 
+        
+        NewTimer( 70, false, function(t) 
             scenesController.LoadScene("gameOver")
-            soundsManager.Stop("music")
         end)
     else
         soundsManager.Play("hurt")

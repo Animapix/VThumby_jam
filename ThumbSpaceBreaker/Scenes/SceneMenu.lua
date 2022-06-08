@@ -2,6 +2,7 @@ local scene = {}
 
 --[[______________________________________________  LOAD  ______________________________________________ ]]
 scene.Load = function()
+    soundsManager.Stop("gameoverMusic")
     NewTimer(10, false, function()  soundsManager.Play("menu",true) end) 
 end
 

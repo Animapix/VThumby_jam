@@ -33,7 +33,13 @@
         "name": "gameover",
         "fileName": "gameover.wav",
         "mode": "static",
-        "volume": 0.3
+        "volume": 0.1
+    },
+    {
+        "name": "gameoverMusic",
+        "fileName": "gameover.mp3",
+        "mode": "stream",
+        "volume": 0.04
     },
     {
         "name": "menu",
