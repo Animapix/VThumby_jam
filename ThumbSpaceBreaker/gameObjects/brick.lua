@@ -35,6 +35,7 @@ function NewBrick(x,y,value,offset,bonus)
         brick.currentValue = brick.currentValue - 1
         if brick.currentValue <= 0 then 
             brick.free = true
+            soundsManager.Play("blocDestroy")
             gameController.Scoring(brick.value)
             if brick.bonus then
                 

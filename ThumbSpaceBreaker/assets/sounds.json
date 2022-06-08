@@ -40,5 +40,23 @@
         "fileName": "menu.mp3",
         "mode": "stream",
         "volume": 0.04
+    },
+    {
+        "name": "laserBeam",
+        "fileName": "laserBeam.wav",
+        "mode": "static",
+        "volume": 0.2
+    },
+    {
+        "name": "bonusObtain",
+        "fileName": "bonusObtain.wav",
+        "mode": "static",
+        "volume": 0.5
+    },
+    {
+        "name": "blocDestroy",
+        "fileName": "blocDestroy.wav",
+        "mode": "static",
+        "volume": 0.5
     }
 ]

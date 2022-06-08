@@ -13,7 +13,7 @@ NewBonus = function(x,y,offset)
     end
 
     bonus.hit = function(spaceShip)
-        print("bonus connected")
+        soundsManager.Play("bonusObtain")
 
         if math.random( 1,1000 ) < 500 then
             spaceShip.lifes = spaceShip.lifes + 1

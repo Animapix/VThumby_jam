@@ -49,9 +49,11 @@ end
 spaceShip.Laser = function()
     if not spaceShip.laserEnabled and spaceShip.lasers > 0 then
         spaceShip.laserEnabled = true
+        soundsManager.Play("laserBeam",true)
         NewTimer( spaceShip.laserTime, false, function() 
             spaceShip.laserEnabled = false 
             spaceShip.lasers = spaceShip.lasers - 1
+            soundsManager.Stop("laserBeam")
         end)
     end
 end
