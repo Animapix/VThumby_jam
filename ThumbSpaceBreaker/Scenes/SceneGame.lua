@@ -5,13 +5,14 @@ local scene = {}
 
 --[[______________________________________________  LOAD  ______________________________________________ ]]
 
-local spaceShip = require("gameObjects/spaceship")
+local spaceShip = require("gameObjects/spaceShip")
 local scroller = require("gameObjects/scroller")
 local bullets = {}
 local bricks = {}
 local bonusList = {}
 
 scene.Load = function()
+    soundsManager.StopAll()
     gameController.Init()
     spaceShip.Init(10,20)
     scroller.Init()

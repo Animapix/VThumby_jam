@@ -4,9 +4,8 @@ local sounds = {}
 soundsManager = {}
 
 soundsManager.LoadSounds = function(filePath)
-    local file = io.open(filePath, "r")
-    local content = json.decode(file:read("*all"))
-    file:close()
+    local content = love.filesystem.read(filePath)
+    content = json.decode(content)
     for _,s in ipairs(content) do
         soundsManager.Register(s.name,"assets/sounds/"..s.fileName, s.mode, s.volume)
     end
@@ -28,6 +27,11 @@ soundsManager.Stop = function(soundName)
     sounds[soundName]:stop()
 end
 
+soundsManager.StopAll = function()
+    for _,snd in ipairs(sounds) do
+        snd:stop()
+    end
+end
 
 soundsManager.SetVolume = function(soundName,volume)
     sounds[soundName]:setVolume(volume)

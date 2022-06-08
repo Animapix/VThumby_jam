@@ -10,9 +10,8 @@ scroller.Init = function()
 end
 
 scroller.LoadChunks = function()
-    local file = io.open("assets/chunks.json", "r")
-    chunks = json.decode(file:read("*all"))
-    file:close()
+    local content = love.filesystem.read("assets/chunks.json")
+    chunks = json.decode(content)
 end
 
 scroller.GetRandomChunk = function()

@@ -2,6 +2,7 @@ local scene = {}
 
 --[[______________________________________________  LOAD  ______________________________________________ ]]
 scene.Load = function()
+    soundsManager.StopAll()
     
 end
 

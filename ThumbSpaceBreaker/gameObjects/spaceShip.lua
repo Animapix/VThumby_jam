@@ -90,7 +90,8 @@ spaceShip.hit = function()
         spaceShip.invincible = false 
         spaceShip.blinkTimer = spaceShip.invincibleTime
     end)
-    
+    spaceShip.laserEnabled = false
+    soundsManager.Stop("laserBeam")
     spaceShip.lifes = spaceShip.lifes - 1
     
     if spaceShip.lifes <= 0 then 

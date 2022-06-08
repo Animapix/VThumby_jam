@@ -1,21 +1,18 @@
-local json = require("Libraries/json")
+local json = require("libraries/json")
 local fonts = {}
 
 fontsManager = {}
 
 fontsManager.LoadFonts = function(filePath)
-    local file = io.open(filePath, "r")
-    local content = json.decode(file:read("*all"))
-    file:close()
+    local content = love.filesystem.read(filePath)
+    content = json.decode(content)
     for _,f in ipairs(content) do
         fontsManager.LoadFont("assets/fonts/"..f)
     end
 end
 
 fontsManager.LoadFont = function(filePath)
-    local file = io.open(filePath, "r")
-    local content = file:read("*all")
-    file:close()
+    local content = love.filesystem.read(filePath)
     local font = json.decode(content)
     fonts[font.name] = font.glyphes
 end

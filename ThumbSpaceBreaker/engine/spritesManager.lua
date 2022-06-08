@@ -4,11 +4,10 @@ local sprites = {}
 spritesManager = {}
 
 spritesManager.LoadSprites = function(filePath)
-    local file = io.open(filePath, "r")
-    local content = file:read("*all")
-    file:close()
+    local content = love.filesystem.read(filePath)
     sprites = json.decode(content)
 end
+
 
 spritesManager.GetSprite = function(spriteName)
     return sprites[spriteName]
