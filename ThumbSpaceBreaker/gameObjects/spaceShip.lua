@@ -5,7 +5,7 @@ local spaceShip = {}
 spaceShip.Init = function(x,y)
     spaceShip.position = NewVector(x,y)
     spaceShip.speed = 2
-    spaceShip.lifes = 4
+    spaceShip.lifes = 3
     -- shoot variables
     spaceShip.shootRate = 5
     spaceShip.canShoot = false
@@ -19,7 +19,7 @@ spaceShip.Init = function(x,y)
     spaceShip.laserTime = 60
     spaceShip.laserEnabled = false
     spaceShip.laserOffset = 0
-    spaceShip.lasers = 3
+    spaceShip.lasers = 1
 end
 
 spaceShip.Update = function()
@@ -99,7 +99,6 @@ spaceShip.hit = function()
         soundsManager.Stop("music")
         soundsManager.Play("gameover")
         NewTimer(45, false, function()  soundsManager.Play("gameoverMusic", true) end) 
-        
         NewTimer( 70, false, function(t) 
             scenesController.LoadScene("gameOver")
         end)

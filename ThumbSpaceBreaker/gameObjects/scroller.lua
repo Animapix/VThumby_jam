@@ -55,7 +55,7 @@ scroller.Update = function(bricks, bonusList)
                     local x = (c + scroller.column) * cellSize + 72
                     local y = (r - 1) * cellSize + 6
                     if gameController.bonusCounter <= 0 then
-                        gameController.bonusCounter = math.random( 50,60 )
+                        gameController.bonusCounter = math.random( 40,50 )
                         table.insert( bricks, NewBrick(x,y,v,scroller.position, true) )
                     else 
                         table.insert( bricks, NewBrick(x,y,v,scroller.position) )

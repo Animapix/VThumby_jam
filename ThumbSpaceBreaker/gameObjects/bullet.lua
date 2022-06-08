@@ -17,9 +17,9 @@ NewBullet = function(x,y)
     bullet.GetBoundingBox = function()
         return {
             left   = bullet.position.x - 4,
-            top    = bullet.position.y,
+            top    = bullet.position.y - 1,
             right  = bullet.position.x,
-            bottom = bullet.position.y,
+            bottom = bullet.position.y + 1,
         }
     end
 
