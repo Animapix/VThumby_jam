@@ -23,6 +23,11 @@ soundsManager.Play = function(soundName,looping)
     sounds[soundName]:play()
 end
 
+soundsManager.stop = function(soundName)
+    sounds[soundName]:stop()
+end
+
+
 soundsManager.SetVolume = function(soundName,volume)
     sounds[soundName]:setVolume(volume)
 end

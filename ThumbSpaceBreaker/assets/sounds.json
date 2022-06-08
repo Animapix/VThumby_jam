@@ -22,5 +22,17 @@
         "fileName": "laserShoot.wav",
         "mode": "static",
         "volume": 0.3
+    },
+    {
+        "name": "hurt",
+        "fileName": "hurt.wav",
+        "mode": "static",
+        "volume": 0.3
+    },
+    {
+        "name": "gameover",
+        "fileName": "gameover.wav",
+        "mode": "static",
+        "volume": 0.3
     }
 ]
