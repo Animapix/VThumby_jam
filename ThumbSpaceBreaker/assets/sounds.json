@@ -9,7 +9,7 @@
         "name": "music",
         "fileName": "game1.mp3",
         "mode": "stream",
-        "volume": 0.03
+        "volume": 0.07
     },
     {
         "name": "hit",

@@ -6,7 +6,7 @@ NewBullet = function(x,y)
 
     bullet.Update = function()
         bullet.position = bullet.position + bullet.velocity
-        if bullet.position.x - 6 > display.width then bullet.free = true end 
+        if bullet.position.x - 1 > display.width then bullet.free = true end 
     end
 
     bullet.Draw = function()

@@ -3,6 +3,7 @@ local chunks
 local cellSize = 10
 local scroller = {}
 
+
 scroller.Init = function() 
     scroller.column = 0
     scroller.position = 0
@@ -29,12 +30,16 @@ scroller.GetRandomChunk = function()
     return chunks[randId]["bricks"]
 end
 
-scroller.Update = function(bricks)
+scroller.Update = function(bricks, bonusList)
     scroller.speed = scroller.speed  + 0.0001
     scroller.position = scroller.position - scroller.speed 
 
     for i,brick in ipairs(bricks) do
         brick.scrollOffset = scroller.position
+    end
+
+    for i,b in ipairs(bonusList) do
+        b.scrollOffset = scroller.position
     end
 
     if math.abs(scroller.position)  > scroller.column * cellSize then
@@ -47,9 +52,17 @@ scroller.Update = function(bricks)
             for c = 1 , chunkSize do
                 local v = chunk[r][c]
                 if v > 0 and v < 10 then
+                    gameController.brickCounter = gameController.brickCounter + 1
+                    gameController.bonusCounter = gameController.bonusCounter - 1
                     local x = (c + scroller.column) * cellSize + 72
                     local y = (r - 1) * cellSize + 6
-                    table.insert( bricks, NewBrick(x,y,v,scroller.position) )
+                    if gameController.bonusCounter <= 0 then
+                        gameController.bonusCounter = math.random( 50,60 )
+                        table.insert( bricks, NewBrick(x,y,v,scroller.position, true) )
+                    else 
+                        table.insert( bricks, NewBrick(x,y,v,scroller.position) )
+                    end
+
                 end
             end
         end

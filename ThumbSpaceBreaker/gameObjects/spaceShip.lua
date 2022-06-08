@@ -54,7 +54,6 @@ spaceShip.Laser = function()
             spaceShip.laserEnabled = false 
             spaceShip.lasers = spaceShip.lasers - 1
             print("stop laser")
-
         end)
     end
 end

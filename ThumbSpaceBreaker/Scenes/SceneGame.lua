@@ -1,4 +1,5 @@
 require("gameObjects/brick")
+require("gameObjects/bonus")
 
 local scene = {}
 
@@ -8,12 +9,16 @@ local spaceShip = require("gameObjects/spaceship")
 local scroller = require("gameObjects/scroller")
 local bullets = {}
 local bricks = {}
+local bonusList = {}
 
 scene.Load = function()
     spaceShip.Init(10,20)
     scroller.Init()
     bullets = {}
     bricks = {}
+    bonusList = {}
+    soundsManager.Play("music",true)
+
 end
 
 --[[______________________________________________ UPDATE ______________________________________________ ]]
@@ -50,7 +55,7 @@ scene.Update = function()
     end
 
     -- Update bricks positions
-    scroller.Update(bricks)
+    scroller.Update(bricks, bonusList)
 
     -- Space Ship shooting
     if not spaceShip.free then 
@@ -69,12 +74,12 @@ scene.Update = function()
         bullet.Update()
     end
 
-    -- Bullets Update
+    -- Collisions
     for _,brick in ipairs(bricks) do
         for _,bullet in ipairs(bullets) do
             if CheckCollision(bullet.GetBoundingBox(),brick.GetBoundingBox()) then
                 bullet.free = true
-                brick.hit()
+                brick.hit(bricks,bonusList,scroller)
             end
         end
         if not spaceShip.free then
@@ -90,6 +95,14 @@ scene.Update = function()
         end
     end
 
+    for _,bonus in ipairs(bonusList) do
+        if not spaceShip.free then
+            if CheckCollision(spaceShip.GetBoundingBox(),bonus.GetBoundingBox()) then
+                bonus.hit(spaceShip)
+            end
+        end
+    end
+
     -- clean bullets
     for i = #bullets , 1 , -1 do
         if bullets[i].free then table.remove( bullets,i ) end
@@ -100,8 +113,12 @@ scene.Update = function()
         if bricks[i].free then table.remove( bricks,i ) end
     end
 
-    spaceShip.Update()
+    -- clean bonus
+    for i = #bonusList , 1 , -1 do
+        if bonusList[i].free then table.remove( bonusList,i ) end
+    end
 
+    spaceShip.Update()
 end
 
 
@@ -122,6 +139,11 @@ scene.Draw = function()
         --DrawBoundingBox(brick.GetBoundingBox())
     end
 
+    for _,b in ipairs(bonusList) do
+        b.Draw()
+        --DrawBoundingBox(b.GetBoundingBox())
+    end
+
     spaceShip.Draw()
     --DrawBoundingBox(spaceShip.GetBoundingBox())
 
@@ -134,12 +156,12 @@ scene.Draw = function()
         display.DrawSprite(i * 4,0,spritesManager.GetSprite("life"))
     end
 
-    local y = 20 - spaceShip.lasers * 3/2  + 2
+    local y = 20 - spaceShip.lasers * 2/2  + 2
     for i = 0, spaceShip.lasers - 1 do
-        display.DrawLine(1,i*3 + y ,3,i*3 + y )
+        display.DrawLine(1,i*2 + y ,3,i*2 + y )
     end
 
-    display.DrawText(gameController.score,1,35,fontsManager.GetFont("4BitsFont"))
+    display.DrawText(gameController.score,1,37,fontsManager.GetFont("4BitsFont"))
 end
 
 --[[______________________________________________ UNLOAD ______________________________________________ ]]

@@ -1,12 +1,17 @@
-function NewBrick(x,y,value,offset)
+function NewBrick(x,y,value,offset,bonus)
     local brick = {}
     brick.position = NewVector(x,y)
     brick.scrollOffset = offset or 0
     brick.value = value or 1
     brick.currentValue = brick.value
+    brick.bonus = bonus or false
 
     brick.Draw =  function()
         local sprite = spritesManager.GetSprite("brick")
+        if brick.bonus then
+            sprite = spritesManager.GetSprite("brickBonus")
+        end
+
         display.DrawSprite(brick.GetRelativePosition().x - 6, brick.GetRelativePosition().y - 6, sprite)
         if brick.value >= 0 and brick.value < 10 then
             local font = fontsManager.GetFont("numbersFont")
@@ -18,12 +23,18 @@ function NewBrick(x,y,value,offset)
         return brick.position + NewVector(brick.scrollOffset,0)
     end
 
-    brick.hit = function()
+    brick.hit = function(bricks,bonus,scroller)
         soundsManager.Play("hit")
         brick.currentValue = brick.currentValue - 1
         if brick.currentValue <= 0 then 
             brick.free = true
             brick.Scoring()
+            if brick.bonus then
+                
+                local b = NewBonus(brick.position.x,brick.position.y,scroller.position)
+                table.insert( bonus,b )
+
+            end
         end
     end
 

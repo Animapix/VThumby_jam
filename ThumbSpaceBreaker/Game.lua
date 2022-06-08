@@ -17,7 +17,7 @@ display.Init(vthumb.display.width, vthumb.display.height)
 scenesController.RegisterScene("game", require("scenes/sceneGame"))
 scenesController.RegisterScene("menu", require("scenes/sceneMenu"))
 scenesController.RegisterScene("gameOver", require("scenes/sceneGameOver"))
-scenesController.LoadScene("menu")
+scenesController.LoadScene("game")
 
 soundsManager.Play("startSound")
 
