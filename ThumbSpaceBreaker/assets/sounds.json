@@ -15,7 +15,7 @@
         "name": "hit",
         "fileName": "hitHurt.wav",
         "mode": "static",
-        "volume": 0.3
+        "volume": 0.6
     },
     {
         "name": "shoot",
@@ -57,6 +57,6 @@
         "name": "blocDestroy",
         "fileName": "blocDestroy.wav",
         "mode": "static",
-        "volume": 0.5
+        "volume": 0.23
     }
 ]

@@ -11,20 +11,18 @@ gameController.Init = function()
     gameController.bonusCounter = math.random( 50,60 )
 end
 
-
-
-local combo = 0
+gameController.combo = 0
 local comboTimer = nil
 
 gameController.Scoring = function(value)
-    gameController.score = gameController.score +  ( value * 100 ) * combo
-    combo = combo + 1
-    combo = math.min(combo, 5 )
+    gameController.score = gameController.score +  ( value * 100 ) * gameController.combo
+    gameController.combo = gameController.combo + 1
+    gameController.combo = math.min(gameController.combo, 5 )
     if comboTimer ~= nil then 
         comboTimer.currentTime = value * 10
     else
         comboTimer = NewTimer(value * 10 , false, function() 
-            combo = 0
+            gameController.combo = 0
             comboTimer = nil
         end)
     end

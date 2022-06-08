@@ -30,18 +30,15 @@ function NewBrick(x,y,value,offset,bonus)
         if brick.invincible then return end
         brick.invincible = true
         NewTimer( brick.invincibleDuration, false, function() brick.invincible = false end)
-        
         soundsManager.Play("hit")
         brick.currentValue = brick.currentValue - 1
         if brick.currentValue <= 0 then 
             brick.free = true
-            soundsManager.Play("blocDestroy")
+            soundsManager.Play("blocDestroy", false , 1 + gameController.combo * 0.13 )
             gameController.Scoring(brick.value)
             if brick.bonus then
-                
                 local b = NewBonus(brick.position.x,brick.position.y,scroller.position)
                 table.insert( bonus,b )
-
             end
         end
     end

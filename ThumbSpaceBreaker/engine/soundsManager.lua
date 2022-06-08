@@ -17,9 +17,10 @@ soundsManager.Register =  function(soundName, soundPath, mode, volume)
     sounds[soundName]:setVolume(volume)
 end
 
-soundsManager.Play = function(soundName,looping)
+soundsManager.Play = function(soundName,looping, pitch)
     sounds[soundName]:stop()
     sounds[soundName]:setLooping(looping or false)
+    sounds[soundName]:setPitch(pitch or 1)
     sounds[soundName]:play()
 end
 
