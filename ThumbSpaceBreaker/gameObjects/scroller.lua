@@ -3,7 +3,6 @@ local chunks
 local cellSize = 10
 local scroller = {}
 
-
 scroller.Init = function() 
     scroller.column = 0
     scroller.position = 0
@@ -46,7 +45,6 @@ scroller.Update = function(bricks, bonusList)
         
         local chunk = scroller.GetRandomChunk()
         local chunkSize = #chunk[1]
-        
         
         for r = 1, 4 do
             for c = 1 , chunkSize do
