@@ -8,6 +8,7 @@ NewTimer = function(duration,loop,callback)
     timer.currentTime = duration
     timer.loop = loop or false
     table.insert( timers,timer )
+    return timer
 end
 
 

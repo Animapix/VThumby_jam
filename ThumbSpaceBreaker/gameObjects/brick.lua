@@ -35,7 +35,7 @@ function NewBrick(x,y,value,offset,bonus)
         brick.currentValue = brick.currentValue - 1
         if brick.currentValue <= 0 then 
             brick.free = true
-            brick.Scoring()
+            gameController.Scoring(brick.value)
             if brick.bonus then
                 
                 local b = NewBonus(brick.position.x,brick.position.y,scroller.position)
@@ -43,10 +43,6 @@ function NewBrick(x,y,value,offset,bonus)
 
             end
         end
-    end
-
-    brick.Scoring = function()
-        gameController.score = gameController.score +  brick.value * 100
     end
 
     brick.GetBoundingBox = function()
