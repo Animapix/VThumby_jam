@@ -54,7 +54,7 @@ local Clean = function(list)
 end
 
 scene.Update = function()
-
+    
     -- Space Ship Movements
     if not spaceShip.free then 
         local dir = GetInputsDirection()
@@ -68,7 +68,7 @@ scene.Update = function()
     scroller.Update(bricks, bonusList)
     for _,brick in ipairs(bricks) do
         brick.Update()
-        if brick.free then
+        if brick.free and not brick.outScreen then
             local fx = NewEmitter(brick.GetRelativePosition().x,brick.GetRelativePosition().y, 2)
             fx.amount = 8
             table.insert(bricksFX, fx) 

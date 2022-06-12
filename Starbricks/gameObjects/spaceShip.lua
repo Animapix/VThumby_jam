@@ -117,7 +117,6 @@ spaceShip.hit = function()
 end
 
 spaceShip.Draw = function()
-
     spaceShip.engine.Draw()
     local sprite = spritesManager.GetSprite("spaceShip")
     if spaceShip.blinkTimer%4 > 2 then
@@ -129,7 +128,6 @@ spaceShip.Draw = function()
     end
 
     display.DrawSprite(spaceShip.position.x - 3, spaceShip.position.y - 5, sprite)
-    
 end
 
 spaceShip.DrawLaser = function()

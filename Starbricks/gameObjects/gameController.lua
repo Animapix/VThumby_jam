@@ -27,4 +27,3 @@ gameController.Scoring = function(value)
         end)
     end
 end
-

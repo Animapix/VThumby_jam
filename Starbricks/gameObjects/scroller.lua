@@ -36,12 +36,11 @@ scroller.Update = function(bricks, bonusList)
         brick.scrollOffset = scroller.position
     end
 
-    for i,b in ipairs(bonusList) do
+    for i, b in ipairs(bonusList) do
         b.scrollOffset = scroller.position
     end
 
     if math.abs(scroller.position)  > scroller.column * cellSize then
-        
         local chunk = scroller.GetRandomChunk()
         local chunkSize = #chunk[1]
         
@@ -69,6 +68,7 @@ scroller.Update = function(bricks, bonusList)
     for i,brick in ipairs(bricks) do
         if brick.GetRelativePosition().x <= 0 then
             brick.free = true
+            brick.outScreen = true
         end
     end
 end

@@ -29,7 +29,6 @@ NewEmitter = function(x,y,delay)
             emitter.delay = emitter.delay - 1
         end
 
-
         if emitter.enable then
             for i = 1, emitter.amount do
                 local theta = math.rad( math.random(emitter.direction - emitter.angle/2,emitter.direction + emitter.angle/2) )
@@ -41,8 +40,6 @@ NewEmitter = function(x,y,delay)
                 table.insert( emitter.particles, particle )
             end
         end
-
-        
 
         for i = #emitter.particles, 1, -1 do
             if emitter.particles[i].free then

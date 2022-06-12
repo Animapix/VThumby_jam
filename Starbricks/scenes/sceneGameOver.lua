@@ -12,7 +12,7 @@ scene.Update = function()
         soundsManager.Stop("gameoverMusic")
     end
     if vthumb.buttonB.justPressed then
-        love.system.openURL("https://animapix.itch.io/starbricks")
+        love.system.openURL("https://itch.io/jam/gamecodeur-gamejam-36/rate/1571537")
     end
 end
 

@@ -9,7 +9,6 @@ function NewBrick(x,y,value,offset,bonus)
     brick.invincibleDuration = 3
     brick.explosion = false
 
-
     brick.Draw =  function()
         local sprite = spritesManager.GetSprite("brick")
         
@@ -45,8 +44,7 @@ function NewBrick(x,y,value,offset,bonus)
         NewTimer( brick.invincibleDuration, false, function() brick.invincible = false end)
         soundsManager.Play("hit")
         brick.currentValue = brick.currentValue - 1
-        if brick.currentValue <= 0 then 
-            --brick.free = true
+        if brick.currentValue <= 0 then
             brick.explosion = true
             soundsManager.Play("blocDestroy", false , 1 + gameController.combo * 0.13 )
             gameController.Scoring(brick.value)
