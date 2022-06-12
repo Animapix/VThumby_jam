@@ -6,7 +6,7 @@ local scroller = {}
 scroller.Init = function() 
     scroller.column = 0
     scroller.position = 0
-    scroller.speed = 0.2
+    scroller.speed = 0.15
 end
 
 scroller.LoadChunks = function()

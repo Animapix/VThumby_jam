@@ -4,6 +4,8 @@ require("libraries/timers")
 require("engine/spritesManager")
 require("engine/soundsManager")
 require("engine/fontsManager")
+require("engine/emitter")
+require("engine/particle")
 
 spritesManager.LoadSprites("assets/sprites.json")
 fontsManager.LoadFonts("assets/fonts.json")

@@ -7,6 +7,7 @@ function NewBrick(x,y,value,offset,bonus)
     brick.bonus = bonus or false
     brick.invincible = false
     brick.invincibleDuration = 3
+    brick.explosion = false
 
 
     brick.Draw =  function()
@@ -33,7 +34,8 @@ function NewBrick(x,y,value,offset,bonus)
         soundsManager.Play("hit")
         brick.currentValue = brick.currentValue - 1
         if brick.currentValue <= 0 then 
-            brick.free = true
+            --brick.free = true
+            brick.explosion = true
             soundsManager.Play("blocDestroy", false , 1 + gameController.combo * 0.13 )
             gameController.Scoring(brick.value)
             if brick.bonus then

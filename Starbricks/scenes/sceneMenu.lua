@@ -1,23 +1,21 @@
 local scene = {}
-
 --[[______________________________________________  LOAD  ______________________________________________ ]]
 scene.Load = function()
-    soundsManager.StopAll()
-    
+    NewTimer(20, false, function()  soundsManager.Play("menu",true) end)
 end
 
 --[[______________________________________________ UPDATE ______________________________________________ ]]
 scene.Update = function()
     if vthumb.buttonA.justPressed then
-        scenesController.LoadScene("menu")
+        scenesController.LoadScene("game")
+        soundsManager.Stop("menu")
     end
 end
 
 --[[______________________________________________  DRAW  ______________________________________________ ]]
 scene.Draw = function()
-    display.DrawText("Game Over",36,5,fontsManager.GetFont("4BitsFont"), "centered")
-    display.DrawText("SCORE",36,15,fontsManager.GetFont("4BitsFont"), "centered")
-    display.DrawText(gameController.score,36,30,fontsManager.GetFont("numbersFont"), "centered")
+    display.DrawText("STARBRICKS",36,10,fontsManager.GetFont("4BitsFont"), "centered")
+    display.DrawText("A to start",36,30,fontsManager.GetFont("4BitsFont"), "centered")
 end
 
 --[[______________________________________________ UNLOAD ______________________________________________ ]]

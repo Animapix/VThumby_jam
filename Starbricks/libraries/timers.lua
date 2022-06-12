@@ -11,6 +11,11 @@ NewTimer = function(duration,loop,callback)
     return timer
 end
 
+StopAllTimers =  function()
+    for i,timer  in ipairs(timers) do
+        table.remove( timers,i )
+    end
+end
 
 UpdateTimers = function()
     for i=#timers ,1,-1 do

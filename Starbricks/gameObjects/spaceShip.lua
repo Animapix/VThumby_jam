@@ -20,6 +20,11 @@ spaceShip.Init = function(x,y)
     spaceShip.laserEnabled = false
     spaceShip.laserOffset = 0
     spaceShip.lasers = 1
+
+    spaceShip.engine = NewEmitter(x,y)
+    spaceShip.engine.angle = 20
+    spaceShip.engine.amount = 2
+    spaceShip.engine.speed = 200
 end
 
 spaceShip.Update = function()
@@ -30,6 +35,9 @@ spaceShip.Update = function()
     if spaceShip.laserEnabled then
         spaceShip.laserOffset = spaceShip.laserOffset - 1
     end
+
+    spaceShip.engine.position = spaceShip.position
+    spaceShip.engine.Update()
 end
 
 spaceShip.Move = function(direction)
@@ -109,6 +117,8 @@ spaceShip.hit = function()
 end
 
 spaceShip.Draw = function()
+
+    spaceShip.engine.Draw()
     local sprite = spritesManager.GetSprite("spaceShip")
     if spaceShip.blinkTimer%4 > 2 then
         sprite = spritesManager.GetSprite("spaceShip2")
@@ -119,6 +129,7 @@ spaceShip.Draw = function()
     end
 
     display.DrawSprite(spaceShip.position.x - 3, spaceShip.position.y - 5, sprite)
+    
 end
 
 spaceShip.DrawLaser = function()

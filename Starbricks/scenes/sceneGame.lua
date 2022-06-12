@@ -4,14 +4,15 @@ require("gameObjects/bonus")
 local scene = {}
 
 --[[______________________________________________  LOAD  ______________________________________________ ]]
-
 local spaceShip = require("gameObjects/spaceShip")
 local scroller = require("gameObjects/scroller")
 local bullets = {}
 local bricks = {}
 local bonusList = {}
+local bricksFX = {}
 
 scene.Load = function()
+    StopAllTimers()
     soundsManager.StopAll()
     gameController.Init()
     spaceShip.Init(10,20)
@@ -46,12 +47,20 @@ local CheckCollision = function(boxA,boxB)
            boxB.top < boxA.bottom
 end
 
+local Clean = function(list)
+    for i = #list , 1 , -1 do
+        if list[i].free then table.remove( list,i ) end
+    end
+end
+
 scene.Update = function()
     
-
     -- Space Ship Movements
     if not spaceShip.free then 
-        spaceShip.Move(GetInputsDirection())
+        local dir = GetInputsDirection()
+        if dir.x < 0 then spaceShip.engine.enable = false
+        else spaceShip.engine.enable = true end
+        spaceShip.Move(dir)
         spaceShip.position = spaceShip.CheckOutOfBounds()
     end
 
@@ -85,7 +94,7 @@ scene.Update = function()
         end
         if not spaceShip.free then
             if spaceShip.laserEnabled and CheckCollision(spaceShip.GetLaserBoundingBox(),brick.GetBoundingBox()) then
-                brick.hit(bricks,bonusList,scroller)
+                brick.hit(bricks,bonusList,scroller, bricksFX)
             end
 
             if CheckCollision(spaceShip.GetBoundingBox(),brick.GetBoundingBox()) then
@@ -103,20 +112,9 @@ scene.Update = function()
         end
     end
 
-    -- clean bullets
-    for i = #bullets , 1 , -1 do
-        if bullets[i].free then table.remove( bullets,i ) end
-    end
-
-    -- clean bricks
-    for i = #bricks , 1 , -1 do
-        if bricks[i].free then table.remove( bricks,i ) end
-    end
-
-    -- clean bonus
-    for i = #bonusList , 1 , -1 do
-        if bonusList[i].free then table.remove( bonusList,i ) end
-    end
+    Clean(bullets)
+    Clean(bricks)
+    Clean(bonusList)
 
     spaceShip.Update()
 end
@@ -124,7 +122,6 @@ end
 
 
 --[[______________________________________________  DRAW  ______________________________________________ ]]
-
 local DrawBoundingBox = function(box)
     display.DrawLine(box.left,box.top,box.right,box.top)
     display.DrawLine(box.left,box.top,box.left,box.bottom)
@@ -145,7 +142,7 @@ scene.Draw = function()
     end
 
     spaceShip.Draw()
-    --DrawBoundingBox(spaceShip.GetBoundingBox())
+        --DrawBoundingBox(spaceShip.GetBoundingBox())
 
     for _,bullet in ipairs(bullets) do
         bullet.Draw()
