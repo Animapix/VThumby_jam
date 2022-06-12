@@ -1,4 +1,4 @@
-NewEmitter = function(x,y)
+NewEmitter = function(x,y,delay)
     local emitter = {}
     emitter.position = NewVector(x,y)
     emitter.particles = {}
@@ -8,8 +8,28 @@ NewEmitter = function(x,y)
     emitter.speed = 100
     emitter.speedVariation = 50
     emitter.enable = true
+    emitter.free = false
+    emitter.delay = delay
 
-    emitter.Update = function()  
+    emitter.Update = function()
+        
+        for _,particle in ipairs(emitter.particles) do
+            particle.Update()
+        end
+
+        if emitter.delay ~= nil then
+            
+            if emitter.delay <= 0 then
+                if #emitter.particles <= 0 then
+                    emitter.free = true
+                end
+                return
+            end
+
+            emitter.delay = emitter.delay - 1
+        end
+
+
         if emitter.enable then
             for i = 1, emitter.amount do
                 local theta = math.rad( math.random(emitter.direction - emitter.angle/2,emitter.direction + emitter.angle/2) )
@@ -22,9 +42,7 @@ NewEmitter = function(x,y)
             end
         end
 
-        for _,particle in ipairs(emitter.particles) do
-            particle.Update()
-        end
+        
 
         for i = #emitter.particles, 1, -1 do
             if emitter.particles[i].free then

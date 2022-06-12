@@ -12,14 +12,26 @@ function NewBrick(x,y,value,offset,bonus)
 
     brick.Draw =  function()
         local sprite = spritesManager.GetSprite("brick")
+        
         if brick.bonus then
             sprite = spritesManager.GetSprite("brickBonus")
         end
 
+        if brick.explosion then
+            sprite = spritesManager.GetSprite("brick2")
+        end
+
         display.DrawSprite(brick.GetRelativePosition().x - 6, brick.GetRelativePosition().y - 6, sprite)
-        if brick.value >= 0 and brick.value < 10 then
+
+        if brick.value >= 0 and brick.value < 10 and not brick.explosion then
             local font = fontsManager.GetFont("numbersFont")
             display.DrawText(brick.currentValue, brick.GetRelativePosition().x -2 ,brick.GetRelativePosition().y -3,font)
+        end
+    end
+
+    brick.Update = function()
+        if brick.explosion then
+            brick.free = true
         end
     end
 

@@ -54,7 +54,7 @@ local Clean = function(list)
 end
 
 scene.Update = function()
-    
+
     -- Space Ship Movements
     if not spaceShip.free then 
         local dir = GetInputsDirection()
@@ -66,6 +66,14 @@ scene.Update = function()
 
     -- Update bricks positions
     scroller.Update(bricks, bonusList)
+    for _,brick in ipairs(bricks) do
+        brick.Update()
+        if brick.free then
+            local fx = NewEmitter(brick.GetRelativePosition().x,brick.GetRelativePosition().y, 2)
+            fx.amount = 8
+            table.insert(bricksFX, fx) 
+        end
+    end
 
     -- Space Ship shooting
     if not spaceShip.free then 
@@ -89,7 +97,7 @@ scene.Update = function()
         for _,bullet in ipairs(bullets) do
             if CheckCollision(bullet.GetBoundingBox(),brick.GetBoundingBox()) then
                 bullet.free = true
-                brick.hit(bricks,bonusList,scroller)
+                brick.hit(bricks,bonusList,scroller,bricksFX)
             end
         end
         if not spaceShip.free then
@@ -112,9 +120,14 @@ scene.Update = function()
         end
     end
 
+    for _,fx in ipairs(bricksFX) do
+        fx.Update()
+    end
+
     Clean(bullets)
     Clean(bricks)
     Clean(bonusList)
+    Clean(bricksFX)
 
     spaceShip.Update()
 end
@@ -156,6 +169,10 @@ scene.Draw = function()
     local y = 20 - spaceShip.lasers * 2/2  + 2
     for i = 0, spaceShip.lasers - 1 do
         display.DrawLine(1,i*2 + y ,3,i*2 + y )
+    end
+
+    for _,fx in ipairs(bricksFX) do
+        fx.Draw()
     end
 
     display.DrawText(gameController.score,1,37,fontsManager.GetFont("4BitsFont"))
