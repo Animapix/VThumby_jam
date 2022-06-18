@@ -17,6 +17,14 @@ NewEmitter = function(x,y,delay)
             particle.Update()
         end
 
+
+        for i = #emitter.particles, 1, -1 do
+            if emitter.particles[i].free then
+                table.remove( emitter.particles,1 )
+            end
+        end
+
+
         if emitter.delay ~= nil then
             
             if emitter.delay <= 0 then
@@ -40,13 +48,6 @@ NewEmitter = function(x,y,delay)
                 table.insert( emitter.particles, particle )
             end
         end
-
-        for i = #emitter.particles, 1, -1 do
-            if emitter.particles[i].free then
-                table.remove( emitter.particles,1 )
-            end
-        end
-
     end
     
     emitter.Draw = function()

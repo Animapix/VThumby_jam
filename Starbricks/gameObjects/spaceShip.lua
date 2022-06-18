@@ -1,7 +1,7 @@
 require("gameObjects/bullet")
 
 local spaceShip = {}
- 
+
 spaceShip.Init = function(x,y)
     spaceShip.position = NewVector(x,y)
     spaceShip.speed = 2
@@ -143,7 +143,6 @@ spaceShip.DrawLaser = function()
         if sinY > y - 1  and sinY < y + 2 then l = 0 end 
         display.SetPixel(x,sinY,l,1)
     end
-
 end
 
 spaceShip.GetLaserBoundingBox = function()

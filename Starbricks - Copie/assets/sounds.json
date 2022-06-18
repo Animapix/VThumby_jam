@@ -1,0 +1,68 @@
+[
+    {
+        "name": "startSound",
+        "fileName": "demarrageThumby.wav",
+        "mode": "static",
+        "volume": 0.1
+    },
+    {
+        "name": "music",
+        "fileName": "game1.ogg",
+        "mode": "stream",
+        "volume": 0.07
+    },
+    {
+        "name": "hit",
+        "fileName": "hitHurt.wav",
+        "mode": "static",
+        "volume": 0.6
+    },
+    {
+        "name": "shoot",
+        "fileName": "laserShoot.wav",
+        "mode": "static",
+        "volume": 0.3
+    },
+    {
+        "name": "hurt",
+        "fileName": "hurt.wav",
+        "mode": "static",
+        "volume": 0.3
+    },
+    {
+        "name": "gameover",
+        "fileName": "gameover.wav",
+        "mode": "static",
+        "volume": 0.1
+    },
+    {
+        "name": "gameoverMusic",
+        "fileName": "gameover.ogg",
+        "mode": "stream",
+        "volume": 0.04
+    },
+    {
+        "name": "menu",
+        "fileName": "menu.ogg",
+        "mode": "stream",
+        "volume": 0.04
+    },
+    {
+        "name": "laserBeam",
+        "fileName": "laserBeam.wav",
+        "mode": "static",
+        "volume": 0.2
+    },
+    {
+        "name": "bonusObtain",
+        "fileName": "bonusObtain.wav",
+        "mode": "static",
+        "volume": 0.5
+    },
+    {
+        "name": "blocDestroy",
+        "fileName": "blocDestroy.wav",
+        "mode": "static",
+        "volume": 0.23
+    }
+]

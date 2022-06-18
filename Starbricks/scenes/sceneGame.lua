@@ -130,9 +130,8 @@ scene.Update = function()
     Clean(bricksFX)
 
     spaceShip.Update()
+
 end
-
-
 
 --[[______________________________________________  DRAW  ______________________________________________ ]]
 local DrawBoundingBox = function(box)
